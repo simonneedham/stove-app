@@ -1,0 +1,48 @@
+footer {
+    height: 20%;
+}
+
+.burn-increment {
+    font-size: 3em;
+    padding-top: 0.25em;
+    width: 2em;
+}
+
+.burn-level {
+    font-size: 2.5em;
+    padding-top: 0.25em;
+
+    & > .lvl-0 {
+        width: 0em;
+    }
+
+    & > .lvl-1 {
+        width: 0.2em;
+    }
+
+    & > .lvl-2 {
+        width: 0.4em;
+    }
+
+    & > .lvl-3 {
+        width: 0.6em;
+    }
+
+    & > .lvl-4 {
+        width: 0.8em;
+    }
+
+    & > .lvl-5 {
+        width: 1em;
+    }
+}
+
+.grey-band {
+    background-color: grey;
+}
+
+.temp-display  {
+    font-size: 1.25em;
+    font-weight: 100;
+    opacity: 0.4;
+}

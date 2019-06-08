@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-around centre-info">
+    <div class="flex-column text-center">
+        <!-- <div class="clock mb-5"><i class="fa fa-clock-o"></i></div> -->
+        <div class="mb-5">
+            <span class="fa-stack fa-3x">
+                <i class="fa fa-circle fa-stack-2x night-reduction-off"></i>
+                <i class="fa fa-clock-o fa-stack-1x fa-inverse"></i>
+            </span>
+        </div>
+        <div [ngSwitch]="phase">
+            <i *ngSwitchCase="-1" class="fa fa-spinner fa-spin fa-4x fa-pulse fa-fw"></i>
+            <i *ngSwitchCase="0" class="fa fa-power-off status-icon"></i>
+            <i *ngSwitchCase="1" class="fa fa-power-off status-icon"></i>
+            <i *ngSwitchCase="2" class="fa fa-power-off status-icon"></i>
+            <i *ngSwitchCase="3" class="fa fa-power-off status-icon"></i>
+            <i *ngSwitchCase="4" class="fa fa-power-off status-icon"></i>
+            <i *ngSwitchCase="5" class="fa fa-power-off status-icon sa-yellow"></i>
+            <i *ngSwitchDefault class="fa fa-power-off status-icon"></i>
+        </div>
+        <div class="status-text">{{ statusText }}</div>
+        <div class="time-to-refill mt-5 sa-yellow">Estimated time to refill:</div>
+        <div *ngIf="timeToRefillText" class="time-to-refill-value">{{ timeToRefillText }}</div>
+        <div *ngIf="timeToRefillText===null" class="time-to-refill-value">{{ newFireWoodHours | number: '2.0-0' }}:{{ newFireWoodMinutes | number: '2.0-0' }}</div>
+    </div>
+</div>

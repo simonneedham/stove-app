@@ -1,0 +1,31 @@
+.centre-info {
+    font-weight: 100;
+
+    & .clock {
+        font-size: 4em;
+    }
+
+    & .status-icon {
+        font-size: 6em;
+    }
+
+    & .status-text {
+        font-size: 1.5em;
+    }
+
+    & .time-to-refill {
+        font-size: 1.5em;
+    }
+
+    & .time-to-refill-value {
+        font-size: 1.5em;
+    }
+}
+
+.night-reduction-off {
+    color: black !important;
+}
+
+.night-reduction-on {
+    color: greenyellow;
+}

@@ -1,0 +1,10 @@
+.title-bar {
+    font-size: 1.5em;
+}
+
+a.menu {
+    color: white;
+    & :hover {
+        color: white;
+    }
+}

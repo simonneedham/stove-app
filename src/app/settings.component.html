@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <h1>Settings</h1>
+    <form *ngIf="formGroup" [formGroup]="formGroup">
+        <div formGroupName="lastStove">
+            <div class="form-group row">
+                <label for="lastStoveName" class="col-sm-2 col-form-label">Last Stove Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastStoveName" formControlName="name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lastStoveIp" class="col-sm-2 col-form-label">Last Stove IP</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastStoveIp" formControlName="ip">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">Stove Id Request</div>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="stoveIdRequestEnabled" formControlName="stoveIdRequestEnabled">
+                    <label class="form-check-label" for="stoveIdRequestEnabled">Enable</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button class="btn btn-outline-warning" (click)="saveOnClick()">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

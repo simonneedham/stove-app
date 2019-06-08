@@ -1,0 +1,25 @@
+<footer class="fixed-bottom">
+    <div class="d-flex justify-content-between temp-display mb-2">
+        <div class="ml-2"><i class="fa" [ngClass]="thermometerClass"></i> {{ roomTemp | number: '.1-1' }}&deg;C</div>
+        <div class="mr-2"><i class="fa fa-fire"></i> {{ stoveTemp | number: '1.1-1' }}&deg;C</div>
+    </div>
+    <div class="d-flex justify-content-around grey-band" style="height:100%">
+        <div class="align-middle burn-increment text-right" (click)="updateBurnLevel(-1)">
+            -
+        </div>
+        <div>
+            <span class="fa-stack burn-level">
+                <i class="fa fa-signal fa-stack-2x" style="opacity:.3"></i>
+                <i
+                    class="fa fa-signal fa-stack-2x sa-yellow"
+                    [ngClass]="{'lvl-0': burnLevel === 0, 'lvl-1': burnLevel === 1, 'lvl-2': burnLevel === 2, 'lvl-3': burnLevel === 3, 'lvl-4': burnLevel === 4, 'lvl-5': burnLevel === 5}"
+                    style="overflow:hidden;"
+                >
+                </i>
+            </span>
+        </div>
+        <div class="align-middle burn-increment" (click)="updateBurnLevel(+1)">
+            +
+        </div>
+    </div>
+</footer>
