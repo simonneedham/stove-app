@@ -1,12 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/observable/of';
+import { Observable, Subject, BehaviorSubject, interval, of, throwError } from 'rxjs';
+
 import { catchError, flatMap, map, share, takeUntil } from 'rxjs/operators';
 
 import { BurnLevel } from './burnLevel';
@@ -31,24 +27,24 @@ export class StoveService implements OnDestroy {
         this.lastSelectedStove = this.settings.lastStove;
         this.selectedStove = new BehaviorSubject<Stove>(this.lastSelectedStove);
 
-        const tick = Observable.interval(10000);
+        const tick = interval(10000);
         this.stoveStatus = tick
                 .pipe(
                     flatMap(() => this.httpClient.get<StoveData>(
                         `http://${this.lastSelectedStove.ip}/${this.statusUrl}`)
                     ),
                     catchError(this.handleStoveStatusError),
-                    share(),
+                    share<StoveData>(),
                     takeUntil(this.completionSubject)
                 );
     }
 
-    public setBurnLevel(burnLevel: 0|1|2|3|4|5): Observable<boolean> {
+    public setBurnLevel(burnLevel: 0|1|2|3|4|5): Observable<string | boolean> {
         return this
             .httpClient
             .post(
                 `http://${this.lastSelectedStove.ip}/set_burn_level`,
-                { 'level': burnLevel },
+                { level: burnLevel },
                 {
                     headers: {
                         'content-type': 'text/plain'
@@ -96,12 +92,12 @@ export class StoveService implements OnDestroy {
 
     private handleError(err: any) {
         console.log(err); // log for devs
-        return ErrorObservable.create(err);
+        return throwError(err);
     }
 
     private handleStoveStatusError(err: any) {
         console.log(err); // log for devs
-        return Observable.of(new StoveData());
+        return of(new StoveData());
     }
 
     public ngOnDestroy(): void {
